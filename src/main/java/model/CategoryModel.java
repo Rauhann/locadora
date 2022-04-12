@@ -15,6 +15,7 @@ public class CategoryModel {
 
     /**
      * Salva um registro no json
+     *
      * @param code
      * @param name
      * @param value
@@ -22,7 +23,14 @@ public class CategoryModel {
      * @param indicatePromotion
      * @param promotionPeriod
      */
-    public void save(int code, String name, double value, int period, boolean indicatePromotion, int promotionPeriod) {
+    public void save(
+            int code,
+            String name,
+            double value,
+            int period,
+            int indicatePromotion,
+            int promotionPeriod
+    ) {
         JSONObject category = new JSONObject();
         category.put("code", code);
         category.put("name", name);

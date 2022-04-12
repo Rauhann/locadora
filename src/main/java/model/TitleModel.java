@@ -12,6 +12,7 @@ import java.util.List;
 
 public class TitleModel {
     private final DatabaseHelper db;
+    private final String table = "titles";
 
     /**
      * Construtor da model
@@ -20,6 +21,17 @@ public class TitleModel {
         db = new DatabaseHelper();
     }
 
+    /**
+     * Salva um registro no json
+     *
+     * @param code
+     * @param title
+     * @param subTitle
+     * @param genre
+     * @param languages
+     * @param producer
+     * @param category
+     */
     public void save(
             int code,
             String title,
@@ -44,6 +56,10 @@ public class TitleModel {
         movie.put("producer", producer.getName());
         movie.put("category", category.getName());
 
-        db.create("titles", movie);
+        db.create(table, movie);
+    }
+
+    public String list() {
+        return db.select(table);
     }
 }

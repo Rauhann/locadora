@@ -1,5 +1,6 @@
 package main.java.controller;
 
+import main.java.exceptions.ValidatorException;
 import main.java.helpers.ValidateHelper;
 import main.java.model.GenreModel;
 import main.java.validators.CodeValidator;
@@ -15,7 +16,10 @@ public class GenreController {
         genreModel = new GenreModel();
     }
 
-    public void save(int code, String name) {
+    public void save(
+            int code,
+            String name
+    ) throws ValidatorException {
         ValidateHelper.validate(new CodeValidator(), code);
         ValidateHelper.validate(new NameValidator(), name);
 

@@ -15,10 +15,14 @@ public class GenreModel {
 
     /**
      * Salva um registro no json
+     *
      * @param code
      * @param name
      */
-    public void save(int code, String name) {
+    public void save(
+            int code,
+            String name
+    ) {
         JSONObject genre = new JSONObject();
         genre.put("code", code);
         genre.put("name", name);

@@ -5,10 +5,10 @@ public class CategoryEntity {
     private String name;
     private double value;
     private int period;
-    private boolean indicatePromotion;
+    private int indicatePromotion;
     private int periodPromotion;
 
-    public CategoryEntity(int code, String name, double value, int period, boolean indicatePromotion, int periodPromotion) {
+    public CategoryEntity(int code, String name, double value, int period, int indicatePromotion, int periodPromotion) {
         this.code = code;
         this.name = name;
         this.value = value;
@@ -49,11 +49,11 @@ public class CategoryEntity {
         this.period = period;
     }
 
-    public boolean isIndicatePromotion() {
+    public int isIndicatePromotion() {
         return indicatePromotion;
     }
 
-    public void setIndicatePromotion(boolean indicatePromotion) {
+    public void setIndicatePromotion(int indicatePromotion) {
         this.indicatePromotion = indicatePromotion;
     }
 

@@ -15,10 +15,14 @@ public class ProducerModel {
 
     /**
      * Salva um registro no json
+     *
      * @param code
      * @param name
      */
-    public void save(int code, String name) {
+    public void save(
+            int code,
+            String name
+    ) {
         JSONObject language = new JSONObject();
         language.put("code", code);
         language.put("name", name);

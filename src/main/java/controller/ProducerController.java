@@ -1,5 +1,6 @@
 package main.java.controller;
 
+import main.java.exceptions.ValidatorException;
 import main.java.helpers.ValidateHelper;
 import main.java.model.GenreModel;
 import main.java.model.ProducerModel;
@@ -18,10 +19,14 @@ public class ProducerController {
 
     /**
      * Valida e cria uma produtora
+     *
      * @param code
      * @param name
      */
-    public void save(int code, String name) {
+    public void save(
+            int code,
+            String name
+    ) throws ValidatorException {
         ValidateHelper.validate(new CodeValidator(), code);
         ValidateHelper.validate(new NameValidator(), name);
 

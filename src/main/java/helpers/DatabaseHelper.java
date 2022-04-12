@@ -4,6 +4,8 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.*;
@@ -14,10 +16,11 @@ public class DatabaseHelper {
 
     /**
      * Helper para listar registros no json
+     *
      * @param table
      * @return
      */
-    public JSONArray get(String table) {
+    private JSONArray get(String table) {
         JSONArray jsonArray = new JSONArray();
 
         try {
@@ -35,12 +38,16 @@ public class DatabaseHelper {
 
     /**
      * Helper para adicionar registro no respectivo json
+     *
      * @param table
      * @param data
      */
-    public void create(String table, JSONObject data) {
+    public void create(
+            String table,
+            JSONObject data
+    ) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        JSONArray jsonArray = select(table);
+        JSONArray jsonArray = get(table);
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(DATABASE + table + ".json"))) {
             data.put("created_at", sdf.format(new Date()));
@@ -55,11 +62,13 @@ public class DatabaseHelper {
     }
 
     /**
-     * Função auxiliar de retorno de registros json
+     * Função retorno de registros json
+     *
      * @param table
      * @return
      */
-    private JSONArray select(String table) {
-        return get(table);
+    public String select(String table) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(get(table));
     }
 }

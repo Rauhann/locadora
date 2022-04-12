@@ -5,11 +5,9 @@ import main.java.entity.CategoryEntity;
 import main.java.entity.GenreEntity;
 import main.java.entity.LanguageEntity;
 import main.java.entity.ProducerEntity;
+import main.java.exceptions.ValidatorException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class RunAllocation {
 
@@ -34,6 +32,7 @@ public class RunAllocation {
 
             try {
                 Scanner sc = new Scanner(System.in);
+                System.out.println();
                 System.out.print("Opção: ");
                 int option = sc.nextInt();
 
@@ -91,11 +90,11 @@ public class RunAllocation {
                         System.out.print("Período: ");
                         int categoryPeriod = sc.nextInt();
                         sc.nextLine();
-                        System.out.print("Promoção? (true ou false): ");
-                        boolean categoryPromotion = sc.nextBoolean();
+                        System.out.print("Promoção? (Sim = 1 ou Não = 0): ");
+                        int categoryPromotion = sc.nextInt();
 
                         int categoryPromotionPeriod = 0;
-                        if (categoryPromotion) {
+                        if (categoryPromotion == 1) {
                             System.out.print("Período promocional: ");
                             categoryPromotionPeriod = sc.nextInt();
                             sc.nextLine();
@@ -130,7 +129,10 @@ public class RunAllocation {
                         System.out.println("Módulo não desenvolvido");
                         break;
                     case 5:
-                        System.out.println("Módulo não desenvolvido");
+                        System.out.println();
+                        TitleController listTitle = new TitleController();
+                        System.out.println(listTitle.list());
+                        System.out.println();
                         break;
                     case 6:
                         System.out.println("Módulo não desenvolvido");
@@ -140,8 +142,10 @@ public class RunAllocation {
                         System.out.println("Opção inválida!");
                         System.out.println();
                 }
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+            } catch (InputMismatchException | ValidatorException e) {
+                System.out.println();
+                System.out.println("Error: " + e.getMessage());
+                System.out.println();
             }
         }
     }
