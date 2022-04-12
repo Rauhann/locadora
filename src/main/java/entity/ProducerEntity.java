@@ -4,6 +4,14 @@ public class ProducerEntity {
     private int code;
     private String name;
 
+    public ProducerEntity(int code, String name) {
+        this.code = code;
+        this.name = name;
+    }
+
+    public ProducerEntity() {
+    }
+
     public int getCode() {
         return code;
     }

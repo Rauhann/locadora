@@ -1,5 +1,8 @@
 package main.java.interfaces;
 
+/**
+ * Interface de filmes
+ */
 public interface TitleInterface {
     public void save();
     public String search();

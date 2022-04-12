@@ -8,6 +8,15 @@ public class CategoryEntity {
     private boolean indicatePromotion;
     private int periodPromotion;
 
+    public CategoryEntity(int code, String name, double value, int period, boolean indicatePromotion, int periodPromotion) {
+        this.code = code;
+        this.name = name;
+        this.value = value;
+        this.period = period;
+        this.indicatePromotion = indicatePromotion;
+        this.periodPromotion = periodPromotion;
+    }
+
     public int getCode() {
         return code;
     }

@@ -4,6 +4,14 @@ public class GenreEntity {
     private int code;
     private String name;
 
+    public GenreEntity(int code, String name) {
+        this.code = code;
+        this.name = name;
+    }
+
+    public GenreEntity() {
+    }
+
     public int getCode() {
         return code;
     }
