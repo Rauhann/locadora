@@ -46,7 +46,7 @@ public class RunAllocation {
                         System.out.print("CPF: ");
                         String clientCpf = sc.nextLine();
 
-                        System.out.print("Possui cliente resposnável? (Sim = 1, Não = 0): ");
+                        System.out.print("Possui cliente responsável? (Sim = 1, Não = 0): ");
                         int hasParentClient = sc.nextInt();
                         sc.nextLine();
 
@@ -57,7 +57,7 @@ public class RunAllocation {
                             sc.nextLine();
                             System.out.print("Nome responsável: ");
                             String parentClientName = sc.nextLine();
-                            System.out.print("CPF resposnável: ");
+                            System.out.print("CPF responsável: ");
                             String parentClientCpf = sc.nextLine();
 
                             parentClient.setCode(parentClientCode);
@@ -156,7 +156,23 @@ public class RunAllocation {
                         System.out.println();
                         break;
                     case 3:
-                        System.out.println("Módulo não desenvolvido");
+                        System.out.println("---------------------------- CADASTRAR USUÁRIO ----------------------------");
+                        UserController userController = new UserController();
+                        System.out.print("Código: ");
+                        int userCode = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Nome: ");
+                        String userName = sc.nextLine();
+                        System.out.print("Login: ");
+                        String userLogin = sc.nextLine();
+                        System.out.print("Password: ");
+                        String userPass = sc.nextLine();
+
+                        userController.save(userCode, userName, userLogin, userPass, true);
+
+                        System.out.println();
+                        System.out.println("Usuário cadastrado com sucesso!");
+                        System.out.println();
                         break;
                     case 4:
                         System.out.println("Módulo não desenvolvido");
