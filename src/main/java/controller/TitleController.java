@@ -49,6 +49,10 @@ public class TitleController{
         titleModel.save(code, title, subTitle, genre, languages, producer, category);
     }
 
+    /**
+     * Lista os filmes cadastrados
+     * @return
+     */
     public String list() {
         return titleModel.list();
     }

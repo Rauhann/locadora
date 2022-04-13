@@ -6,6 +6,16 @@ public class ClientEntity {
     private String cpf;
     private ClientEntity parentClient;
 
+    public ClientEntity() {
+    }
+
+    public ClientEntity(int code, String name, String cpf, ClientEntity parentClient) {
+        this.code = code;
+        this.name = name;
+        this.cpf = cpf;
+        this.parentClient = parentClient;
+    }
+
     public int getCode() {
         return code;
     }

@@ -1,3 +1,40 @@
 {
-  "data": []
+  "data": [
+    {
+      "code": 1,
+      "name": "PORTUGUES",
+      "created_at": "2022-04-13 09:00:00",
+      "updated_at": "2022-04-13 09:00:00"
+    },
+    {
+      "code": 2,
+      "name": "INGLES",
+      "created_at": "2022-04-13 09:00:00",
+      "updated_at": "2022-04-13 09:00:00"
+    },
+    {
+      "code": 3,
+      "name": "ESPANHOL",
+      "created_at": "2022-04-13 09:00:00",
+      "updated_at": "2022-04-13 09:00:00"
+    },
+    {
+      "code": 4,
+      "name": "FRANCES",
+      "created_at": "2022-04-13 09:00:00",
+      "updated_at": "2022-04-13 09:00:00"
+    },
+    {
+      "code": 5,
+      "name": "ALEMAO",
+      "created_at": "2022-04-13 09:00:00",
+      "updated_at": "2022-04-13 09:00:00"
+    },
+    {
+      "code": 6,
+      "name": "ITALIANO",
+      "created_at": "2022-04-13 09:00:00",
+      "updated_at": "2022-04-13 09:00:00"
+    }
+  ]
 }

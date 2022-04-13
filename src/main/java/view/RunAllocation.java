@@ -1,17 +1,15 @@
 package main.java.view;
 
 import main.java.controller.*;
-import main.java.entity.CategoryEntity;
-import main.java.entity.GenreEntity;
-import main.java.entity.LanguageEntity;
-import main.java.entity.ProducerEntity;
+import main.java.entity.*;
 import main.java.exceptions.ValidatorException;
+import main.java.helpers.StringHelper;
 
 import java.util.*;
 
 public class RunAllocation {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ValidatorException {
 
         /**
          * Até o momento a idéia é que o sistema nunca deixa de executar, somente quando o força
@@ -38,7 +36,41 @@ public class RunAllocation {
 
                 switch (option) {
                     case 1:
-                        System.out.println("Módulo não desenvolvido");
+                        System.out.println("---------------------------- CADASTRAR CLIENTE ----------------------------");
+                        ClientController clientController = new ClientController();
+                        System.out.print("Código: ");
+                        int clientCode = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Nome: ");
+                        String clientName = sc.nextLine();
+                        System.out.print("CPF: ");
+                        String clientCpf = sc.nextLine();
+
+                        System.out.print("Possui cliente resposnável? (Sim = 1, Não = 0): ");
+                        int hasParentClient = sc.nextInt();
+                        sc.nextLine();
+
+                        ClientEntity parentClient = new ClientEntity();
+                        if (hasParentClient == 1) {
+                            System.out.print("Código responsável: ");
+                            int parentClientCode = sc.nextInt();
+                            sc.nextLine();
+                            System.out.print("Nome responsável: ");
+                            String parentClientName = sc.nextLine();
+                            System.out.print("CPF resposnável: ");
+                            String parentClientCpf = sc.nextLine();
+
+                            parentClient.setCode(parentClientCode);
+                            parentClient.setName(parentClientName);
+                            parentClient.setCpf(parentClientCpf);
+                            clientController.save(parentClientCode, parentClientName, parentClientCpf, new ClientEntity());
+                        }
+
+                        clientController.save(clientCode, clientName, clientCpf, parentClient);
+
+                        System.out.println();
+                        System.out.println("Cliente cadastrado com sucesso!");
+                        System.out.println();
                         break;
                     case 2:
                         System.out.println("---------------------------- CADASTRAR GÊNERO ----------------------------");
@@ -48,6 +80,7 @@ public class RunAllocation {
                         sc.nextLine();
                         System.out.print("Nome: ");
                         String genreName = sc.nextLine();
+                        genreName = StringHelper.removeAccents(genreName.toUpperCase());
                         genreController.save(genreCode, genreName);
 
                         System.out.println("---------------------------- CADASTRAR IDIOMAS ----------------------------");
@@ -60,7 +93,7 @@ public class RunAllocation {
                             sc.nextLine();
                             System.out.print("Nome: ");
                             String languageName = sc.nextLine();
-
+                            languageName = StringHelper.removeAccents(languageName.toUpperCase());
                             languageController.save(languageCode, languageName);
 
                             System.out.print("Existem mais idiomas? (Sim = 1, Não = 0): ");
@@ -142,10 +175,8 @@ public class RunAllocation {
                         System.out.println("Opção inválida!");
                         System.out.println();
                 }
-            } catch (InputMismatchException | ValidatorException e) {
-                System.out.println();
-                System.out.println("Error: " + e.getMessage());
-                System.out.println();
+            } catch (ValidatorException | RuntimeException e) {
+                System.err.println(e.getMessage());
             }
         }
     }

@@ -1,5 +1,6 @@
 package main.java.controller;
 
+import main.java.enums.GenreEnum;
 import main.java.exceptions.ValidatorException;
 import main.java.helpers.ValidateHelper;
 import main.java.model.GenreModel;
@@ -23,6 +24,8 @@ public class GenreController {
         ValidateHelper.validate(new CodeValidator(), code);
         ValidateHelper.validate(new NameValidator(), name);
 
-        genreModel.save(code, name);
+        if (!GenreEnum.checkIfExists(name)) {
+            genreModel.save(code, name);
+        }
     }
 }

@@ -11,7 +11,7 @@ public class ValidateHelper {
         try {
             validator.validate(object);
         } catch (ValidatorException e) {
-            System.err.println(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 }
