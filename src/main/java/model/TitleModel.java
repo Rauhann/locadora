@@ -1,13 +1,13 @@
 package main.java.model;
 
-import main.java.entity.CategoryEntity;
-import main.java.entity.GenreEntity;
-import main.java.entity.LanguageEntity;
-import main.java.entity.ProducerEntity;
+import com.google.gson.Gson;
+import main.java.entity.*;
+import main.java.entity.TitleEntity;
 import main.java.helpers.DatabaseHelper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TitleModel {
@@ -59,7 +59,37 @@ public class TitleModel {
         db.create(table, movie);
     }
 
+    /**
+     * Lista os filmes cadastrados no json
+     *
+     * @return
+     */
     public String list() {
         return db.select(table);
+    }
+
+
+    public List<Integer> print() {
+        JSONArray titles = db.get(table);
+        Gson gson = new Gson();
+        TitleEntity[] titleArray = gson.fromJson(String.valueOf(titles), TitleEntity[].class);
+        List<Integer> codes = new ArrayList<>();
+
+        for (TitleEntity title : titleArray) {
+            System.out.println(title.getCode() + " - " + title.getTitle());
+            codes.add(title.getCode());
+        }
+
+        return codes;
+    }
+
+    /**
+     * Verifica se o filme esta na lista
+     * @param list
+     * @param opt
+     * @return
+     */
+    public boolean checkExistsInList(List<Integer> list, int opt) {
+        return list.contains(opt);
     }
 }

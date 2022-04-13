@@ -2,6 +2,9 @@ package main.java.helpers;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
 import com.google.gson.Gson;
@@ -20,7 +23,7 @@ public class DatabaseHelper {
      * @param table
      * @return
      */
-    private JSONArray get(String table) {
+    public JSONArray get(String table) {
         JSONArray jsonArray = new JSONArray();
 
         try {
@@ -70,5 +73,27 @@ public class DatabaseHelper {
     public String select(String table) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(get(table));
+    }
+
+    /**
+     * Busca item pelo seu codigo
+     * @param table
+     * @param code
+     * @return
+     */
+    public JSONArray searchByCode(String table, int code) {
+        JSONArray items = get(table);
+        JSONArray result = new JSONArray();
+
+        for (int i = 0; i < items.size(); ++i) {
+            JSONObject rec = (JSONObject) items.get(i);
+            long getCode = (long) rec.get("code");
+
+            if (getCode == code) {
+                result.add(rec);
+            }
+        }
+
+        return result;
     }
 }

@@ -175,7 +175,89 @@ public class RunAllocation {
                         System.out.println();
                         break;
                     case 4:
-                        System.out.println("Módulo não desenvolvido");
+                        System.out.println("---------------------------- CADASTRAR LOCAÇÃO ----------------------------");
+                        LocationController locationController = new LocationController();
+                        System.out.print("Código: ");
+                        int locationCode = sc.nextInt();
+                        sc.nextLine();
+
+                        UserController userController1 = new UserController();
+                        List<Integer> arrayUserCodes = userController1.print();
+
+                        if (arrayUserCodes.isEmpty()) {
+                            System.out.println();
+                            System.out.println("Cadastre um usuário!");
+                            break;
+                        }
+
+                        System.out.print("Escolha o usuario (Código): ");
+                        int locationUser = sc.nextInt();
+                        sc.nextLine();
+
+                        while (!userController1.checkExistsInList(arrayUserCodes, locationUser)) {
+                            System.out.println();
+                            System.out.println("Escolha um usuario existente na lista:");
+                            userController1.print();
+                            System.out.println();
+                            System.out.print("Escolha o usuario (Código): ");
+                            locationUser = sc.nextInt();
+                            sc.nextLine();
+                        }
+
+                        ClientController clientController1 = new ClientController();
+                        List<Integer> arrayClientCodes = clientController1.print();
+
+                        if (arrayClientCodes.isEmpty()) {
+                            System.out.println();
+                            System.out.println("Cadastre um cliente!");
+                            break;
+                        }
+
+                        System.out.print("Escolha o cliente (Código): ");
+                        int locationClient = sc.nextInt();
+                        sc.nextLine();
+
+                        while (!clientController1.checkExistsInList(arrayClientCodes, locationClient)) {
+                            System.out.println();
+                            System.out.println("Escolha um cliente existente na lista:");
+                            clientController1.print();
+                            System.out.println();
+                            System.out.print("Escolha o cliente (Código): ");
+                            locationClient = sc.nextInt();
+                            sc.nextLine();
+                        }
+
+                        TitleController titleController1 = new TitleController();
+//                        List<Integer> arrayTitleCodes = titleController1.print();
+
+                        System.out.println();
+                        System.out.println("Digite 0 para finalizar a adição de filmes");
+                        int locationTitle = 1;
+                        List<Integer> titles = new ArrayList<>();
+
+                        while (locationTitle > 0) {
+                            System.out.print("Escolha o filme (Código): ");
+                            locationTitle = sc.nextInt();
+                            sc.nextLine();
+
+//                            while (!titleController1.checkExistsInList(arrayTitleCodes, locationTitle) || locationTitle == 0) {
+//                                System.out.println();
+//                                System.out.println("Escolha um filme existente na lista:");
+//                                titleController1.print();
+//                                System.out.println();
+//                                System.out.print("Escolha o filme (Código): ");
+//                                locationTitle = sc.nextInt();
+//                                sc.nextLine();
+//                            }
+
+                            titles.add(locationTitle);
+                        }
+
+                        locationController.save(locationCode, locationUser, locationClient, titles);
+
+                        System.out.println();
+                        System.out.println("Locação realizada com sucesso!");
+                        System.out.println();
                         break;
                     case 5:
                         System.out.println();
@@ -184,7 +266,10 @@ public class RunAllocation {
                         System.out.println();
                         break;
                     case 6:
-                        System.out.println("Módulo não desenvolvido");
+                        System.out.println();
+                        LocationController locationController1 = new LocationController();
+                        System.out.println(locationController1.list());
+                        System.out.println();
                         break;
                     default:
                         System.out.println();

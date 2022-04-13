@@ -1,13 +1,18 @@
 package main.java.model;
 
+import com.google.gson.Gson;
 import main.java.entity.ClientEntity;
 import main.java.helpers.DatabaseHelper;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ClientModel {
     private final DatabaseHelper db;
+    private final String table = "clients";
 
     /**
      * Construtor da model
@@ -41,6 +46,36 @@ public class ClientModel {
         }
         client.put("parent_client", checkName);
 
-        db.create("clients", client);
+        db.create(table, client);
+    }
+
+    /**
+     * Printa na tela os usuarios disponiveis
+     *
+     * @return
+     */
+    public List<Integer> print() {
+        JSONArray clients = db.get(table);
+        Gson gson = new Gson();
+        ClientEntity[] clientArray = gson.fromJson(String.valueOf(clients), ClientEntity[].class);
+        List<Integer> codes = new ArrayList<>();
+
+        for (ClientEntity client : clientArray) {
+            System.out.println(client.getCode() + " - " + client.getName());
+            codes.add(client.getCode());
+        }
+
+        return codes;
+    }
+
+    /**
+     * Verifica se cliente esta na lista
+     *
+     * @param list
+     * @param opt
+     * @return
+     */
+    public boolean checkExistsInList(List<Integer> list, int opt) {
+        return list.contains(opt);
     }
 }

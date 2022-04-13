@@ -56,4 +56,24 @@ public class TitleController{
     public String list() {
         return titleModel.list();
     }
+
+    /**
+     * Lista os filmes cadastrados formatados para locação
+     *
+     * @return
+     */
+    public List<Integer> print() {
+        return titleModel.print();
+    }
+
+    /**
+     * Verifica se o filme esta na lista
+     *
+     * @param list
+     * @param opt
+     * @return
+     */
+    public boolean checkExistsInList(List<Integer> list, int opt) {
+        return titleModel.checkExistsInList(list, opt);
+    }
 }

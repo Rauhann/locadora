@@ -11,6 +11,19 @@ public class TitleEntity {
     private CategoryEntity category;
     private List<LanguageEntity> languages;
 
+    public TitleEntity(int code, String title, String subTitle, GenreEntity genre, ProducerEntity producer, CategoryEntity category, List<LanguageEntity> languages) {
+        this.code = code;
+        this.title = title;
+        this.subTitle = subTitle;
+        this.genre = genre;
+        this.producer = producer;
+        this.category = category;
+        this.languages = languages;
+    }
+
+    public TitleEntity() {
+    }
+
     public int getCode() {
         return code;
     }
